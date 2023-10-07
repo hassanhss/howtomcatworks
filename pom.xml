@@ -11,6 +11,7 @@
     <modules>
         <module>ex01</module>
         <module>ex02</module>
+        <module>ex03</module>
     </modules>
 
     <properties>
@@ -19,4 +20,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>4.0.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
