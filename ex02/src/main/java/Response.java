@@ -1,8 +1,6 @@
 import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.Cookie;
 import java.io.*;
-import java.util.Collection;
 import java.util.Locale;
 
 public class Response implements ServletResponse {

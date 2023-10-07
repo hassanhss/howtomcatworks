@@ -1,52 +1,23 @@
 import javax.servlet.*;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
 
-public class Request implements ServletRequest {
+/**
+ * Description:
+ *
+ * @author hassan
+ * @since 2023/10/7 08:45
+ */
+public class RequestFacade implements ServletRequest {
 
-    private InputStream input;
-    private String uri;
+    private ServletRequest request;
 
-    public Request(InputStream input) {
-        this.input = input;
-    }
-
-    public void parse() {
-        // Read a set of characters from the socket
-        StringBuilder request = new StringBuilder(2048);
-        int i;
-        byte[] buffer = new byte[2048];
-        try {
-            i = input.read(buffer);
-        } catch (IOException e) {
-            e.printStackTrace();
-            i = -1;
-        }
-        for (int j = 0; j < i; j++) {
-            request.append((char) buffer[j]);
-        }
-        System.out.print(request);
-        uri = parseUri(request.toString());
-    }
-
-    private String parseUri(String requestString) {
-        int index1, index2;
-        index1 = requestString.indexOf(' ');
-        if (index1 != -1) {
-            index2 = requestString.indexOf(' ', index1 + 1);
-            if (index2 > index1)
-                return requestString.substring(index1 + 1, index2);
-        }
-        return null;
-    }
-
-    public String getUri() {
-        return uri;
+    public RequestFacade(Request request) {
+        this.request = request;
     }
 
     @Override

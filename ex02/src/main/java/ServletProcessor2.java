@@ -10,7 +10,7 @@ import java.net.URLStreamHandler;
  * @author hassan
  * @since 2023/10/5 14:43
  */
-public class ServletProcessor1 {
+public class ServletProcessor2 {
 
     public void process(Request request, Response response) {
         String uri = request.getUri();
@@ -29,6 +29,8 @@ public class ServletProcessor1 {
         }
 
         Class myClass = null;
+        RequestFacade requestFacade = new RequestFacade(request);
+        ResponseFacade responseFacade = new ResponseFacade(response);
         try {
             myClass = loader.loadClass(servletName);
         }catch (Exception e) {
@@ -38,7 +40,7 @@ public class ServletProcessor1 {
         Servlet servlet;
         try {
             servlet = (Servlet) myClass.newInstance();
-            servlet.service(request, response);
+            servlet.service(requestFacade, responseFacade);
         } catch (Exception e) {
             e.printStackTrace();
         }
