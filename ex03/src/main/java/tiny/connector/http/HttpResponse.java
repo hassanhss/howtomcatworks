@@ -172,10 +172,11 @@ public class HttpResponse implements HttpServletResponse {
         try {
             File file = new File(Constants.WEB_ROOT, request.getRequestURI());
             fis = new FileInputStream(file);
-            String header = "HTTP/1.1 200 OK\r\n" +
-                    "Content-Type: application/json\r\n" +
-                    "\r\n";
-            output.write(header.getBytes());
+            //String header = "HTTP/1.1 200 OK\r\n" +
+            //        "Content-Type: application/json\r\n" +
+            //        "\r\n";
+            //output.write(header.getBytes());
+            sendHeader();
             int ch = fis.read(bytes, 0, BUFFER_SIZE);
             while (ch != -1) {
                 output.write(bytes, 0, ch);
