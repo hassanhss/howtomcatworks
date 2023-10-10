@@ -105,10 +105,10 @@ public class HttpResponse implements HttpServletResponse {
         return committed;
     }
 
-    protected void sendHeader() throws IOException {
+    protected void sendHeader() {
         if (isCommitted())
             return;
-        OutputStreamWriter osr = null;
+        OutputStreamWriter osr;
         try {
             osr = new OutputStreamWriter(getStream(), getCharacterEncoding());
         }catch (Exception e) {
